@@ -1,0 +1,10 @@
+Test=int(input("ENTER THE NUMBER OF TEST CASES :"))
+for i in range(Test):
+    count=0
+    number=input("Enter the number :")
+    for i in number:
+        number=int(number)
+        i=int(i)
+        if i!=0 and number%i==0:
+            count+=1
+    print(f"The digits exactly dividing N is {count} ")
