@@ -1,0 +1,16 @@
+dic={}
+while 1==1:
+    product=input("Enter the product or (done) to exit : ")
+    if product.lower()=="done":
+      print("Thanks for visit")
+      break
+    else:
+      price=input("Enter the value of the product ")
+      dic[product]=price
+while 1==1:
+    value=input("Enter the product ")
+    if value in dic:
+        print(f"The value of the {value} is {dic[value]}")
+    else:
+        print("No such product")
+    
