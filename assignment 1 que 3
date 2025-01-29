@@ -1,0 +1,26 @@
+list=["1.inches","2.yards","3.miles","4.millimeteres","5.centimeters","6.meters","7.kilometers"]
+print("enter the convertion")
+for i in range(7):
+    print(list[i])
+
+choise=int(input("Enter the choise "))
+if choise > 7 or choise < 1:
+    print("Invalid choice")
+else:
+    length=float(input("enter the length in feet"))
+
+    def convert(length, choise):
+        fist = [
+            12,             # Feet to inches
+            1 / 3,          # Feet to yards
+            1 / 5280,       # Feet to miles
+            304.8,          # Feet to millimeters
+            30.48,          # Feet to centimeters
+            0.3048,         # Feet to meters
+            0.0003048       # Feet to kilometers
+        ]
+        
+        return fist[choise - 1] * length
+
+    result = convert(length, choise)
+    print(result)
