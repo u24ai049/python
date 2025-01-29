@@ -1,0 +1,10 @@
+name=input("Enter the word ")
+names=list(name)
+length=len(names)
+for i in range(length):
+    if i%2!=0:
+       names[i]= names[i].upper()
+    else:
+       names[i]= names[i].lower()
+namelist="".join(names)
+print(namelist)
