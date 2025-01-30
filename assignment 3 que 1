@@ -1,0 +1,11 @@
+number = input("Enter the number: ")
+numlist = []
+for i in number:
+    numlist.append(int(i))
+num1 = sum(numlist)
+while num1 >= 10: 
+    numlist = []
+    for i in str(num1):
+        numlist.append(int(i))
+    num1 = sum(numlist)  
+print(f"The digital root is {num1}")  
