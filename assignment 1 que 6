@@ -1,0 +1,29 @@
+import math
+
+def distance(p1, p2):
+    return math.sqrt((p1[0] - p2[0]) ** 2 + (p1[1] - p2[1]) ** 2 + (p1[2] - p2[2]) ** 2)
+
+points = []
+for i in range(10):
+    x = int(input(f"Enter x coordinate for point {i+1}: "))
+    y = int(input(f"Enter y coordinate for point {i+1}: "))
+    z = int(input(f"Enter z coordinate for point {i+1}: "))
+    points.append((x, y, z))
+
+nearest_neighbors = []
+
+for i in range(10):
+    point = points[i]
+    nearest_point = None
+    nearest_dist = float('inf')
+    
+    for j in range(10):
+        if i != j:
+            dist = distance(point, points[j])
+            if dist < nearest_dist:
+                nearest_dist = dist
+                nearest_point = points[j]
+    
+    nearest_neighbors.append((point, nearest_point))
+
+print(nearest_neighbors)
