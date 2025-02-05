@@ -1,0 +1,16 @@
+test=int(input("Enter the number of test cases : "))
+list=[]
+for i in range (test):
+    list.append(int(input("Enter the test case : ")))
+print(f"the list is {list}")
+for i in range(test):
+    fib1=0
+    fib2=1
+    fib3=0
+    while 1:
+        fib3=fib1+fib2
+        if fib3==list[i]:
+            print(f"The {list[i]} is IsFibo")
+        if fib3>=list[i]:
+            break
+        fib1,fib2=fib2,fib3
