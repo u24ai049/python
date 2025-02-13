@@ -1,7 +1,6 @@
 def ispangram(string2):
-    li=len(list(string2))
     se=len(set(string2))
-    if li==se:
+    if 26==se:
         print("Is Pangram")
     else:
         print("Is Not Pangram")
