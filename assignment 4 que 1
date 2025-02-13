@@ -1,0 +1,11 @@
+def findoperations(s):
+    operations=0
+    l=len(s)
+    for i in range(l//2):
+        if s[i]!=s[l-i-1]:
+            operations+=abs(ord(s[i])-ord(s[l-i-1]))#abs is used to remove sign(+ or - ) and ord return the ascii value
+    return operations
+T=int(input("Enter the number of test cases : "))
+for i in range(T):
+    s=input("Enter the string : ")
+    print(findoperations(s))
