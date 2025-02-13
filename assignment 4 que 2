@@ -1,0 +1,16 @@
+import math
+def findsquares(a,b):
+    if b<a :
+        a,b=b,a
+    count=0
+    for i in range(a,b+1):
+        if math.isqrt(i)**2==i:#isqrt will retrn an integer value n such that n*n<=i
+            count+=1
+    return count
+T=int(input("Enter the number of test cases : "))
+for i in range(T):
+    a=0
+    b=0
+    a=int(input("Enter A: "))
+    b=int(input("Enter B: "))
+    print(findsquares(a,b))
