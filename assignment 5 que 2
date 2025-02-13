@@ -1,0 +1,4 @@
+n=int(input("Enter the K : "))
+a=n//2
+b=n-a
+print("The max number of pieces are",a*b)
