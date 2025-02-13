@@ -1,0 +1,10 @@
+test=int(input("Enter the number of test cases : "))
+for i in range(test):
+    maximum=0
+    a=int(input("Enter the first integer : "))
+    b=int(input("Enter the second integer : "))
+    for i in range(a,b+1):
+        for i in range(i,b+1):
+            result=a^i
+            maximum=max(result,maximum)
+    print("the max is ",maximum)
