@@ -1,0 +1,27 @@
+import random
+
+def is_valid(board, n):
+    for row in range(n):
+        for other_row in range(row):
+            if board[row] == board[other_row] or \
+               abs(board[row] - board[other_row]) == abs(row - other_row):
+                return False
+    return True
+
+def random_placement(n):
+    while True:
+        board = [random.randint(0, n - 1) for _ in range(n)]
+        if is_valid(board, n):
+            return board
+
+def print_board(board, n):
+    for row in range(n):
+        board_row = ['.' for _ in range(n)]
+        board_row[board[row]] = 'Q'
+        print(' '.join(board_row))
+    print()
+
+# Taking user input for N (number of queens)
+n = int(input("Enter the number of queens (typically 8 for this problem): "))
+board = random_placement(n)
+print_board(board, n)
