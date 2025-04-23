@@ -1,0 +1,23 @@
+def decode_ways(s, decoded="", results=None):
+    if results is None:
+        results = []
+
+    if not s:
+        results.append(decoded)
+        return results
+
+    if s[0] != '0':
+        decode_ways(s[1:], decoded + chr(int(s[0]) + 64), results)
+
+    if len(s) >= 2 and '10' <= s[:2] <= '26':
+        decode_ways(s[2:], decoded + chr(int(s[:2]) + 64), results)
+
+    return results
+
+
+if __name__ == "__main__":
+    digits = input("Enter the encoded message (digits only): ")
+    outputs = decode_ways(digits)
+    print("Possible decodings:")
+    for out in outputs:
+        print(out)
