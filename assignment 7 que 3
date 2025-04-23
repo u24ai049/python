@@ -1,0 +1,55 @@
+class Bank:
+    def __init__(self):
+        self.accounts = {}
+
+    def create_account(self, name):
+        if name in self.accounts:
+            print("Account already exists.")
+        else:
+            self.accounts[name] = 0
+            print(f"Account for {name} created.")
+
+    def deposit(self, name, amount):
+        if name in self.accounts:
+            self.accounts[name] += amount
+            print(f"Deposited {amount} to {name}'s account.")
+        else:
+            print("Account not found.")
+
+    def withdraw(self, name, amount):
+        if name in self.accounts and self.accounts[name] >= amount:
+            self.accounts[name] -= amount
+            print(f"Withdrawn {amount} from {name}'s account.")
+        else:
+            print("Insufficient balance or account not found.")
+
+    def display_account(self, name):
+        if name in self.accounts:
+            print(f"{name}'s Balance: {self.accounts[name]}")
+        else:
+            print("Account not found.")
+
+
+if __name__ == "__main__":
+    bank = Bank()
+    while True:
+        print("\n1. Create Account\n2. Deposit\n3. Withdraw\n4. Show Balance\n5. Exit")
+        choice = input("Enter choice: ")
+        if choice == '1':
+            name = input("Enter name: ")
+            bank.create_account(name)
+        elif choice == '2':
+            name = input("Enter name: ")
+            amount = float(input("Enter amount: "))
+            bank.deposit(name, amount)
+        elif choice == '3':
+            name = input("Enter name: ")
+            amount = float(input("Enter amount: "))
+            bank.withdraw(name, amount)
+        elif choice == '4':
+            name = input("Enter name: ")
+            bank.display_account(name)
+        elif choice == '5':
+            break
+        else:
+            print("Invalid choice.")
