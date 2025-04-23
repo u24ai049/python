@@ -1,0 +1,36 @@
+def is_safe(board, row, col, n):
+    # Check if there's a queen in the same column
+    for i in range(row):
+        if board[i] == col or \
+           board[i] - i == col - row or \
+           board[i] + i == col + row:
+            return False
+    return True
+
+def solve_n_queens(board, row, n):
+    if row == n:
+        return [board[:]]
+    
+    solutions = []
+    for col in range(n):
+        if is_safe(board, row, col, n):
+            board[row] = col
+            solutions += solve_n_queens(board, row + 1, n)
+    return solutions
+
+def print_board(solution, n):
+    for row in solution:
+        board = ['.' for _ in range(n)]
+        board[row] = 'Q'
+        print(' '.join(board))
+    print()
+
+def n_queens(n):
+    board = [-1] * n
+    solutions = solve_n_queens(board, 0, n)
+    for solution in solutions:
+        print_board(solution, n)
+
+# Taking user input for N (number of queens)
+n = int(input("Enter the number of queens (typically 8 for this problem): "))
+n_queens(n)
