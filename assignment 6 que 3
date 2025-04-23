@@ -1,0 +1,35 @@
+class Converter:
+    conversion_rates = {
+        'inches': 0.0254,
+        'feet': 0.3048,
+        'yards': 0.9144,
+        'miles': 1609.344,
+        'kilometers': 1000.0,
+        'meters': 1.0,
+        'centimeters': 0.01,
+        'millimeters': 0.001
+    }
+
+    def __init__(self, length, unit):
+        unit = unit.lower()
+        if unit not in self.conversion_rates:
+            raise ValueError("Unsupported unit provided.")
+        self.length_meters = length * self.conversion_rates[unit]
+
+    def convert_all(self):
+        return {unit: self.length_meters / factor for unit, factor in self.conversion_rates.items()}
+
+
+# Input Example
+if __name__ == "__main__":
+    try:
+        length = float(input("Enter the length: "))
+        unit = input("Enter the original unit (e.g., inches, meters): ")
+        converter = Converter(length, unit)
+
+        results = converter.convert_all()
+        print(f"\nConversions from {length} {unit.lower()}:")
+        for unit, value in results.items():
+            print(f"{unit}: {value:.4f}")
+    except ValueError as e:
+        print("Error:", e)
