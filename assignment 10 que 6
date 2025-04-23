@@ -1,0 +1,40 @@
+import numpy as np
+import matplotlib.pyplot as plt
+
+def f(x):
+    return x**3 - 6*x**2 + 11*x - 6  # Example function f(x) = x^3 - 6x^2 + 11x - 6
+
+def bisection_method(a, b, tol=1e-5, max_iter=100):
+    iterates = []
+    if f(a) * f(b) >= 0:
+        print("Function does not change sign, choose a different interval.")
+        return
+    
+    for _ in range(max_iter):
+        c = (a + b) / 2
+        iterates.append(c)
+        
+        if abs(f(c)) < tol:
+            break
+        
+        if f(c) * f(a) < 0:
+            b = c
+        else:
+            a = c
+    return iterates
+
+# Taking user input for the interval [a, b]
+a = float(input("Enter the lower bound of the interval (a): "))
+b = float(input("Enter the upper bound of the interval (b): "))
+
+# Perform bisection method
+roots = bisection_method(a, b)
+
+# Plotting the root finding process
+plt.plot(roots, 'o-', label="Roots found")
+plt.axhline(0, color='black', lw=1)
+plt.title("Bisection Method Process")
+plt.xlabel("Iterations")
+plt.ylabel("Root Approximations")
+plt.legend()
+plt.show()
