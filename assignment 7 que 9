@@ -1,0 +1,32 @@
+import re
+
+class HindiTokenizer:
+    def __init__(self):
+        # Regular expression patterns
+        self.patterns = {
+            'punctuation': r'[।,?!;:()-]',
+            'dates': r'\d{1,2}[-/]\d{1,2}[-/]\d{2,4}',  # Simple date format like 25/12/2022
+            'urls': r'https?://[a-zA-Z0-9./-]+',  # Matches simple URL patterns
+            'emails': r'[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}',  # Matches email addresses
+            'numbers': r'\d+[\.,]?\d*',  # Matches numbers with or without decimal points
+            'usernames': r'@[a-zA-Z0-9_]+',  # Matches social media handles (e.g., @username)
+            'hindi_words': r'[\u0900-\u097F]+',  # Matches Hindi words (Devanagari script)
+            'whitespace': r'\s+',  # Matches spaces
+        }
+
+    def tokenize(self, text):
+        tokens = []
+        for token_type, pattern in self.patterns.items():
+            matches = re.findall(pattern, text)
+            tokens.extend(matches)
+        return tokens
+
+
+if __name__ == "__main__":
+    text = input("Enter Hindi text: ")
+    tokenizer = HindiTokenizer()
+
+    tokens = tokenizer.tokenize(text)
+    print("Tokens:")
+    for token in tokens:
+        print(token)
