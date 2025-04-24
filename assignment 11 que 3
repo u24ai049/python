@@ -1,0 +1,20 @@
+import pandas as pd
+
+# Taking user input
+n = int(input("Enter number of cars: "))
+asking_prices = []
+fair_prices = []
+
+for i in range(n):
+    asking = float(input(f"Enter asking price for car {i+1}: "))
+    fair = float(input(f"Enter fair price for car {i+1}: "))
+    asking_prices.append(asking)
+    fair_prices.append(fair)
+
+asking_series = pd.Series(asking_prices)
+fair_series = pd.Series(fair_prices)
+
+# Finding good deals
+good_deals = asking_series[asking_series < fair_series].index.tolist()
+
+print("Indices of good deals:", good_deals)
