@@ -1,0 +1,27 @@
+import pandas as pd
+from itertools import product
+
+# Taking user input for concert records
+num = int(input("Enter number of concert records: "))
+records = []
+
+for i in range(num):
+    artist = input(f"Concert {i+1} - Artist: ")
+    venue = input(f"Concert {i+1} - Venue: ")
+    date = input(f"Concert {i+1} - Date (YYYY-MM-DD): ")
+    records.append({'artist': artist, 'venue': venue, 'date': pd.to_datetime(date)})
+
+df = pd.DataFrame(records)
+df['year_month'] = df['date'].dt.to_period('M')
+
+# Cross product of unique artists and venues
+artists = df['artist'].unique()
+venues = df['venue'].unique()
+cross = pd.MultiIndex.from_product([artists, venues], names=['artist', 'venue'])
+
+# Group by and count concerts
+grouped = df.groupby(['year_month', 'artist', 'venue']).size().unstack(fill_value=0)
+
+# Reindex to include all artist-venue pairs
+grouped = grouped.reindex(columns=cross, fill_value=0)
+print(grouped)
