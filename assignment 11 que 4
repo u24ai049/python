@@ -1,0 +1,24 @@
+import pandas as pd
+
+# Simulated 10-day schedule
+data = {'John': [], 'Judy': []}
+print("Enter presence of John and Judy for next 10 days (Y/N):")
+for i in range(10):
+    john = input(f"Day {i+1} - Is John coming? (Y/N): ").strip().upper() == 'Y'
+    judy = input(f"Day {i+1} - Is Judy coming? (Y/N): ").strip().upper() == 'Y'
+    data['John'].append(john)
+    data['Judy'].append(judy)
+
+df = pd.DataFrame(data)
+df['party'] = df['John'] & df['Judy']
+
+# Compute days until next party
+days_til_party = []
+party_indices = df.index[df['party']].tolist()
+
+for i in range(len(df)):
+    future_parties = [p - i for p in party_indices if p >= i]
+    days_til_party.append(min(future_parties) if future_parties else None)
+
+df['days_til_party'] = days_til_party
+print(df)
